@@ -1,0 +1,12 @@
+[서블릿이 제공하는 클래스]
+1. HTTPServletRequest
+	- 정의 : 웹 브라우저의 HTTP 요청 정보를 저장한다.
+	- 주요 메소드
+		1) .getParameter("매개변수명") 
+			-> 요청 매개변수 이름의 값을 전달 받는다.
+			-> 요청 매개변수 이름의 값이 없으면 null 을 반환한다.
+		2) .getParameterValues()
+		3) .
+		4)
+2. HTTPServletResponse
+	- 웹 브라우저의 HTTP 요청에 대한 응답 정보를 저장한다.

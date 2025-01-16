@@ -1,10 +1,69 @@
 [개념]
-- 프로토콜 : 통신 규약
-1. HTTP :
-2. FTP : 
-3. TCP / IP :
+- 프로토콜 : 통신 규약(전세계 범위)
+1. IP : I(Internet) P(Protocol)
+	- 정의 : 네트워크를 사용하는 컴퓨터간의 식별 번호
+	- IP 의 주소체계 : 0 ~ 255 사이 숫자로 4자리를 가지는 구조 
+		예] ipv4 : 192.80.62(공개용) / localhost 127.0.0.1(비굥개용)
+2. PORT
+	- 네트워크 1 대 컴퓨터 안에서 프로그램(프로세스)의 식별번호
+	- PORT 의 주소 체계 : 0 ~ 65535 사이 숫자를 사용(16bit)
+	- 주요 포트
+		1) FTP : 20/21
+		2) HTTP : 80/8080
+		3) DNS : 53
+		4) 사설 PORT : 1000 ~ 50000 사이의 숫자 (중복 불가) 
+			예] MySQL : 3306 / 톰캣 ADMIN PORT : 8081
+	★ PORT 강제 종료 -> 오류 발생 시 
+		1) PORT 확인 : [cmd] -> [netstat -ano] 작성 -> 결과값에 PID 번호 확인하기
+		2) PORT 강제 종료 : taskill /f /pid port번호 
+3. HTTP 
+	- HTTP 의 주소 체계 : http://ip:port -> ip 와 port 사이에 ;(콜론)을 넣어서 구분
+4. HTTPS
+5. SMTP
+등 등
 
-- 클라이언트 : 자료 요청(request)하고 응답(response) 받는 입장 -> 사용자 
+★ HTTP(문자 이동 프로토콜 : 개체지향이 아니므로 문자 자료만 통신 가능) ★ 
+- 정의 : 웹에서 사용하는 문자 통신 규약 
+- 특징 
+	1) 무상태 프로토콜 : 휘발성(저장기능이 없다.)
+	2) 독립적 : 각각의 요청은 독립적으로 서로 영향을 끼치지 않느다.
+	3) TCP/IP 프로토콜에 종속되어 동작하고 PORT 는 주로 80 / 8080 을 사용한다.
+- 주소 체계
+	1) URL : 웹 주소, 네트워크 상의 자료가 어디에 있는지 위치를 표시하는 구약
+		-> 형식 : http://ip:port/자료위치
+		예] http://nid.naver.com/nidlogin.login : 네이버의 login(html) 이 위치한 주소
+	2) URI : 각종 자료들의 유일한 이름이나 위치를 표시하는 규약
+		-> 형식(URL + 매개변수) : http://ip/port/자료위치?매개변수1=값1&매개변수2=값2
+		예] http://finance.naver.com/item/main.naver?code=555555
+- ★ HTTP Header (HTTP 통신 정보) ★
+	1) HTTP ***METHOD*** : HTTP 를 이용하여 통신 요청을 할 때 분류하는 규약
+	2) HTTP ***BODY*** : HTTP 를 이용하여 데이터의 내용/본문 을 보낼 때 사용되는 규약
+	3) HTTp Content-Type : HTTP 를 이용한 데이터의 타입 정보
+	4) HTTP HOST : HTTP 를 이용하여 통신 요청하는 서버의 URL 주소
+- HTTP METHOD 의 종류와 관례적 사용처
+	<HTTP 메소드>			<CRUD>			<HTTP기반의 매핑 구축(RESTFUL)>		<HTTP Servlet>
+	1) get	 	---> 	R(Read)			--->	get 매핑			--->		doGet()
+	2) post	 	---> 	C(Create)		--->	post 매핑			--->		doPost()
+	3) put	 	---> 	U(Update)		--->	put 매핑			--->		doPut()
+	4) delete	---> 	D(Delete)		--->	delete 매핑		--->		doDelete()
+- HTTP 의 사용처
+	1) 브라우저 : 크롬 / 엣지 / 사파리 등 -> HTTP METHOD 중 get method 만 지원
+	2) Talend Api (restful test)
+		[설치]
+		1) 크롬에 talend api 검색 
+		2) [크롬에 추가] 클릭
+		3) 확장프로그램(상단 바 오른쪽 끝에 퍼즐모양) 에서 talend api 클릭
+- HTTP 가 데이터를 보내는 방법
+	방법1) 쿼리스트링
+		- 정의 : URL 주소상에서 ?(물음표) 로 구분하여 매개변수명 = 값 을 표시하고 매개변수가 여러 개 일 경우 & 을 통해 구분한다.
+		예] http://finance.naver.com/item/main.naver?code=555555
+		*** URL : http://finance.naver.com/item/main.naver
+		*** 쿼리스트링 : ?code=555555
+			*** 매개변수 : code
+			*** 매개변수 값 : 555555
+	방법2) HTTP header(정보) body		
+		
+ 클라이언트 : 자료 요청(request)하고 응답(response) 받는 입장 -> 사용자 
 - 서버 : 클라이언트가 요청(request)한 자료를 찾아 응답(response)하는 입장 -> 관리자 / 회사 
 
 - 정적 페이지 : 순수한 HTML / CSS / JS / IMG 파일
@@ -19,9 +78,31 @@
 	2)       개발자가 JSP / 서블릿 등을 통해 파일 생성
 	3) 	         서버가 HTML 로 (가공)컴파일
 	4) 	       클라이어트 <---response--- 서버 
- 
- 
+- 통신 : 매체를 사욯하여 정보를 서로 주고받는 과정	예] 전화 / 카톡 / 우편 / 전신 / 웹페이지(네이버, 구글 등) 등
+- 인터넷 : 컴퓨터로 연결하여 통신 프로토콜을 이용해 정보를 주고받는 과정
+ 	-> 연결방법 : 무선(WIFI) / 유선(랜선)
+- 네트워크 : 인터넷을 통해 연결된 구조로 다양한 정보를 주고 받는 과정	
+	-> 특징
+		1) 글로벌 연결성 (전세계 범위)
+ 		2) 분산 구조
+ 		3) 다양한 서비스 제공
+ 		4) ***프로토콜 제공***
+ 	-> 구성요소 
+ 		1) 네트워크 인프라 : 케이블 / 라우터 / 위성 / 모뎀 등의 물리적인 장치 / 연결매체 필요
+ 		2) 프로토콜
+ 		3) 서버 : 데이터를 제공하는 컴퓨터			예] 아파치톰캣10.1(웹 서버) / MySQLServer(DB 서버)
+ 		4) 클라이언트 : 데이터를 제공받는 컴퓨터		예] 브라우저(크롬/엣지 등) 사용자
+ 		
+ 		
 [프로젝트 구조도]
+	1. 프로젝트명 
+		2. src 폴더
+			3. main 폴더
+				4. java 폴더 ( 주로 백엔드파일 : JAVA / 서블릿 파일
+				4. webapp 폴더 ( 주로 프론트파일 : HTML,CSS,JS,IMG / JSP 파일 등
+					5. WEB-INF : 웹 설정 파일 
+						6. lib : 프로젝트 사용할 외부 라이브러들 .jar 파일들을 넣어두는 곳 ( JDBC )
+						6. web.xml : HTTP 통신이 서블릿과 매핑/연결할 수 있도록 설정 파일
 
 [생성]
 1. 동적 웹 페이지 프로젝트 생성
