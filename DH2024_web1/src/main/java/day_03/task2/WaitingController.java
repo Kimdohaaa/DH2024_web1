@@ -27,10 +27,13 @@ public class WaitingController extends HttpServlet {
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> 2] DELETE 메소드 요청");
-		
-		int num = Integer.parseInt(req.getParameter("num"));
-		
-		boolean result = WaitingDao.getInstance().delete(num);
-		System.out.println(result);
+		try {
+			int num = Integer.parseInt(req.getParameter("num"));
+			boolean result = WaitingDao.getInstance().delete(num);
+			System.out.println(result);
+
+		}catch (NumberFormatException e) {
+			System.out.println(e);
+		}
 	}
 }
