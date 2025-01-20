@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class Example5 extends HttpServlet{
 
 	// 쿼리스트링 방식 //
+	// [1] doGet
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> GET METHOD");
@@ -27,6 +28,7 @@ public class Example5 extends HttpServlet{
 		resp.getWriter().print(result);
 	}
 	
+	// [2] doPost
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> POST METHOD");
@@ -41,6 +43,7 @@ public class Example5 extends HttpServlet{
 		resp.getWriter().print(result);
 	}
 	
+	// [3] doPut
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> PUT METHOD");
@@ -52,7 +55,8 @@ public class Example5 extends HttpServlet{
 		// 3) 응답받기
 		resp.getWriter().print(result);
 	}
-	
+
+	// [4] doDelete
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> DELETE METHOD");
@@ -71,5 +75,4 @@ public class Example5 extends HttpServlet{
 	}
 	
 	// .setContentType() 메소드를 통해 데이터를 보낼 타입을 명시했기 때문에 BODY 에 응답값이 출력됨 //
-
 }
