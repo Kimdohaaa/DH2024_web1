@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/day02/exmaple1")
+@WebServlet("/day02/example1")
 public class Example1 extends HttpServlet{ 
 // 이클립스는 코드가 변경 / 수정 시 자동으로 빌드 됨
 	// - 서블릿 안에 코드 변경 시 자동으로 리로드 됨 -> Crl + F11 하지 않아도됨
