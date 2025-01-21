@@ -14,7 +14,7 @@ const visitWrite = () => {
 	// 3) 객체화
 	let dataObj = {'content' : content, 'age' : age}
 	
-	// 4) fetch 통신
+	// 4) fetch 를 이용하여 서블릿에게 처리 요청 -> BODY 사용
 	let option = {
 		method : `POST`
 	   , headers : {"Content-Type" : "application/json"}
@@ -38,7 +38,7 @@ const visitFindAll= () => {
 	let tbody = document.querySelector("tbody");
 	// 2) 무엇을 -> fetch 로부터 받은 자료를
 	let html = ``;
-		// 2-1) fetch 를 이용한 서블릿에게 자료를 HTTP GET METHOD 로 요청
+		// fetch 를 이용하여 서블릿에게 처리 요청 -> BODY 사용요청
 		const option = {method : `GET`}
 		fetch(`/DH2024_web1/day03/visit2`, option)
 			.then(res => res.json())		// 통신 응답 성공 시 json 타입으로 변환
