@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h3> DAY_04/WAITING2 대기번호 발행 프로그램 </h3>
 
 	<div>
 		<h5> 대기명단 등록 </h5>
