@@ -2,12 +2,30 @@
 1. HTTPServletRequest
 	- 정의 : 웹 브라우저의 HTTP 요청 정보를 저장한다.
 	- 주요 메소드
-		1) .getParameter("매개변수명") 
+		1) req.getParameter("매개변수명") 
 			-> 요청 매개변수 이름의 값을 전달 받는다.
 			-> 요청 매개변수 이름의 값이 없으면 null 을 반환한다.
-		2) .getParameterValues()
-		3) .
-		4)
+		2) req.getReader()
+			-> HTTP HEADER BODY(본문) 을 읽어들이는 객체 반환 메소드
+			-> req.getReader().readLine() : BODY(본문)을 한줄 단위로 반환하는 메소드
+		
 2. HTTPServletResponse
 	- 웹 브라우저의 HTTP 요청에 대한 응답 정보를 저장한다.
-	
+	- 주요 메소드
+		1) resp.setContent-Type("보낼 타입")
+			-> HTTP HTEADER BODY 로 응답보낼 데이터의 타입을 명시하는 메소드
+		2) resp.getwriter.print("보낼 데이터")
+			-> HTTP HEADER BODY 로 응답을 보내는 메소드
+		
+★ Body(본문) 을 request/ response 할 때 content-type 이 "application/json" 타입일 경우 ★
+	-> 주로 웹 / 앱 에서 데이털르 주고받을 떼 주로 "application/json" 사용
+	-> JSON 은 String 타입이기 때문에 response 시 String 타입으로 변환해줌
+	1. JSON 타입 -변환-> DTO 객체  
+		1) ObjectMapper mapper = new ObjectMapper();		// 라이브러리 사용을 위해 인스턴스 생성
+		2) 타입 결과변수명 = mapper.readValue(req.getReader(), DTO클래스명.class);	// .readValue() 메소드를 통해 JSON -변환-> DTO
+	2. DTO 객체 -변환-> JSON 타입
+		1) ObjectMapper mapper = new ObjectMapper();		// 라이브러리 사용을 위해 인스턴스 생성
+		2) 타입 결과변수명 = mapper.writeValueAsString("변환할 변수명");		// .writeValueAsString() 메소드를 통해 DTO -변환-> JSON
+	3) 결과반환
+		1) resp.setContentType("application/json");
+		2) resp.getWriter().print(결과변수명);
