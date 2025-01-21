@@ -71,7 +71,7 @@ const visitUpdate = (num) => {	// 1) 수정할 PK 키를 매개변수로 전달�
 ;
 	// 2) 수정할 내용 받기
 	let contentIn = prompt("수정할 content를 입력하세요.")
-	let ageIn = Number(prompt("수정할 age 를 입력하세요."))
+	let ageIn = prompt("수정할 age 를 입력하세요.")
 
 	// 3) 객체화
 	let dataObj = {
