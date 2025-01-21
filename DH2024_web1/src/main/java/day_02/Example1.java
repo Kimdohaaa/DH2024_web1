@@ -41,7 +41,7 @@ public class Example1 extends HttpServlet{
 	}
 	// [3] PUT : doPut()
 	@Override
-	protected void doTrace(HttpServletRequest arg0, HttpServletResponse arg1) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest arg0, HttpServletResponse arg1) throws ServletException, IOException {
 		System.out.println(">> HTTP 프로토콜 통신이 PUT 방법으로 요청 왔습니다.");
 	}
 	// [4] DELETE : doDelete()
