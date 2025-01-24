@@ -44,7 +44,6 @@
 		</div>
 	</div>
 	
-	<jsp:include page='/Example01/JSP/footer.jsp'/>
 	
 	<script src="../JS/member.js"></script>
 

@@ -9,7 +9,6 @@
 <body>
 
 	<jsp:include page='/Example01/JSP/header.jsp'/>
-	<jsp:include page='/Example01/JSP/footer.jsp'/>
 	
 </body>
 </html>

@@ -5,16 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel='stylesheet' href='../CSS/find.css'>
 </head>
 <body>
 
 	<jsp:include page='/Example01/JSP/header.jsp'/>
 	
-	<div>
-		<h3> 회원목록 조회 / 수정</h3>
-		
-		<div>
-			<table border="1">
+	<div id="wrap">
+		<h3> 회원 목록 조회 / 수정</h3>
+		<div class="content">
+			<table border="1" class="findTable">
 				<thead>
 					<tr>
 						<th>회원번호</th>
@@ -33,8 +33,6 @@
 			</table>
 		</div>
 	</div>
-	
-	<jsp:include page='/Example01/JSP/footer.jsp'/>
 	
 	<script src="../JS/findM.js"></script>
 
