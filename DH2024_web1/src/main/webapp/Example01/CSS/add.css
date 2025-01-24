@@ -3,8 +3,8 @@
 	margin : 0 auto;
 }
 #wrap{
-	align-items : center;
-	height: 100%;
+	width: 1920px;
+	height: 1080px;
 	background-color:#bcbcbc7d;
 	
 }
@@ -17,9 +17,9 @@
 }
 
 h3{
-	margin-top: 30%;
+	margin-top: 30px;
+	margin-bottom: 30px;
 	width: 500px;
-	height: 50px;
 	padding: 0 ;
 	align-items: center;	
 	text-align: center;
@@ -27,6 +27,8 @@ h3{
 }
 
 .addtable{
+	margin-top : 50px;
+	width:50%;
     border-collapse: collapse;
     display: flex;
 }
@@ -35,13 +37,20 @@ h3{
 	margin-bottom: 0px; 
 }
 .addhead > tr{
+	width : 300px;
+	width : 100px;
 	margin-right: 0;
 }
 .addbody > td{
+	width : 300px;
 	margin-left: 0px;
 }
 .addBtn{
+	display : flex;
+	width : 50%;
 	border : 1px soild black;
 	height: 0%;
 }
-
+input{
+	width: 300px;
+}

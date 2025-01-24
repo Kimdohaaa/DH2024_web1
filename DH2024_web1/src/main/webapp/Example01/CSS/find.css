@@ -1,0 +1,30 @@
+@charset "UTF-8";
+#wrap{
+	width: 1920px;
+	align-items : center;
+	height: 1080px;
+	background-color:#bcbcbc7d;
+	
+}
+
+#content{
+	display: flex;
+	flex-direction : column;
+	align-items : flex-start;
+	justify-content: center;
+}
+
+h3{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 500px;
+	padding: 0 ;
+	align-items: center;	
+	text-align: center;
+	padding-top : 30px;
+}
+
+.findTable{
+	width: 50%;
+	text-align: center;
+}

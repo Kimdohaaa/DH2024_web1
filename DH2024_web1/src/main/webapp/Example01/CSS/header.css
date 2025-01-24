@@ -1,8 +1,8 @@
 @charset "UTF-8";
 *{
 	border: 1px solid red;
-margin:  0 auto;
-	
+	margin:  0 auto;
+	width: 1920px;
 }
 
 #headerWrap{
@@ -12,12 +12,13 @@ margin:  0 auto;
 .headerContent{
 	background-color: skyblue;
 	color:  white;
-}
-li{
+	display: flex;
 	
+}
+
+li{
+	display : flex;
 	display : inline-block;
-	flex-wrap: wrap;
 	justify-content: center;
 	margin-right: 7%;
-	
 }
