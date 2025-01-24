@@ -27,11 +27,7 @@
 					회원 매출 조회
 				</a>
 			</li>
-			<li>
-				<a href="http://192.168.40.34:8080/DH2024_web1/Example01/JSP/main.jsp">
-					홈으로
-				</a>
-			</li>
+			
 		</ol>
 	</div>
 	
