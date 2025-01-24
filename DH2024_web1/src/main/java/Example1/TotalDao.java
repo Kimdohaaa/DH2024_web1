@@ -115,8 +115,7 @@ public class TotalDao {
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		
 		try {
-			String sql = "select s.mno , m.mname , m.mgrade , select s.mno , m.mname , m.mgrade , SUM(s.sprice) total from sales"
-					+ " total from sales s"
+			String sql = "select s.mno , m.mname , m.mgrade, SUM(s.sprice) total from sales s"
 					+ "	join member m on s.mno = m.mno group by s.mno, m.mname, m.mgrade order by total desc";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
