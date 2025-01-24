@@ -26,7 +26,7 @@ public class Example6 extends HttpServlet {
         	System.out.println("/day07/example6 POST OK ");
         
         	ObjectMapper mapper = new ObjectMapper();
-        	HashSet<Integer> tSet = mapper.readValue(req.getReader(), HashSet.class);
+        	HashSet<Integer> set = mapper.readValue(req.getReader(), HashSet.class);
         	
         	
         	
