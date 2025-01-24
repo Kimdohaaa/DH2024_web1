@@ -1,11 +1,13 @@
 package day07;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 
 public class Example2 {
 	public static void main(String[] args) {
-		// [1] ArrayList 인스턴스 생성 
+		// [1] List 타입 ArrayList 인스턴스 생성 
 		// -> ArrayList 가 List 인터페이스의 추상메소드 구현체이기 때문에 List 타입 생성 가능
 		List<String> list = new ArrayList<String>();
 			// 변수 타입 : List<String> -> 인터페이스 타입
@@ -65,5 +67,27 @@ public class Example2 {
 		}
 			// 10-3) .forEach() -> 람다식 : JS : () => { } / JAVA : () -> { }
 		list.forEach((str) -> {System.out.print(str);});
+		
+		// [3] List 인터페이스 클래스(구현체) *** 클래스들의 사용법(메소드)은 동일함 ***
+		ArrayList<String> list1 = new ArrayList<String>();
+		Vector<String> list2 = new Vector<String>();		 // 멀티스레드에서 주로 사용
+		LinkedList<String> list3 = new LinkedList<String>(); // 중간 삽입 , 삭제 시 주로 사용
+		
+		// 여러 클래스들의 인스턴스를 다루기 위해서는 주로 인터페이스 타입 사용 -> 다형성을 위해
+		List<String> list4 = new ArrayList<String>();
+		List<String> list5 = new Vector<String>();
+		List<String> list6 = new LinkedList<String>();
+		
+		
 	}
 }
+
+
+
+
+
+
+
+
+
+
