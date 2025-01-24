@@ -39,7 +39,9 @@ public class MemberController extends HttpServlet{
 			
 			boolean result = TotalDao.getInstance().addM(memberDto);
 			
-			resp.getWriter().print(result);
+			if(result) {
+				resp.getWriter().print(memberCheck);
+			}
 		}
 		if(memberCheck == 1) {
 			resp.getWriter().print(memberCheck);
@@ -79,6 +81,7 @@ public class MemberController extends HttpServlet{
 		resp.setContentType("application/json");
 		resp.getWriter().print(jsonResult);
 	}
+	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> MEMBER PUT");
@@ -86,19 +89,50 @@ public class MemberController extends HttpServlet{
 		ObjectMapper mapper = new ObjectMapper();
 		MemberDto memberDto = mapper.readValue(req.getReader(), MemberDto.class);
 		
-		// request 된 회원등급 DB 에 맞게 바꿔서 전달하기 추가 해야됨!!! V
-		if(memberDto.getMgrade().equals("A")) {
-			memberDto.setMgrade("VIP");
-		}else if (memberDto.getMgrade().equals("B")) {
-			memberDto.setMgrade("일반");
-		}else if (memberDto.getMgrade().equals("C")) {
-			memberDto.setMgrade("직원");
-		}
-		boolean result = TotalDao.getInstance().updateM(memberDto);
-		
+		int memberCheck = memberCheck(memberDto);
+		System.out.println(memberDto);
 		resp.setContentType("application/json");
-		resp.getWriter().print(result);
-		
+		if(memberCheck == 0) {
+			if(memberDto.getMgrade().equals("A")) {
+				memberDto.setMgrade("VIP");
+			}else if (memberDto.getMgrade().equals("B")) {
+				memberDto.setMgrade("일반");
+			}else if (memberDto.getMgrade().equals("C")) {
+				memberDto.setMgrade("직원");
+			}
+			System.out.println(memberDto.getMgrade());
+			
+			boolean result = TotalDao.getInstance().addM(memberDto);
+			
+			if(result) {
+				resp.getWriter().print(memberCheck);
+			}
+		}
+		if(memberCheck == 1) {
+			resp.getWriter().print(memberCheck);
+		}
+		if (memberCheck == 2) {
+			resp.getWriter().print(memberCheck);
+		}
+		if (memberCheck == 3) {
+			resp.getWriter().print(memberCheck);
+		}
+		if (memberCheck == 4) {
+			resp.getWriter().print(memberCheck);
+		}
+		if (memberCheck == 5) {
+			resp.getWriter().print(memberCheck);
+		}
+		if (memberCheck == 6) {
+			resp.getWriter().print(memberCheck);
+		}
+		if (memberCheck == 7) {
+			resp.getWriter().print(memberCheck);
+		}
+		if (memberCheck == 8) {
+			resp.getWriter().print(memberCheck);
+		}
+
 	}
 	
 	public int memberCheck(MemberDto memberDto) {
