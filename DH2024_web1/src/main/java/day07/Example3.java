@@ -3,6 +3,7 @@ package day07;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Example3 {
 	public static void main(String[] args) {
@@ -42,6 +43,24 @@ public class Example3 {
 			// 5-2) .forEach() -> iterator 기반으로 만들어진 문법
 		set.forEach((str) -> {System.out.println(str);});
 		
+		// [1] Set 타입의 TreeSet 인스턴스 생성
+		Set<String> set2 = new TreeSet<String>();
+
+		// .add() 시 오름차순으로 자동 정렬 -> 사용 시 인스턴스 타입을 Set 타입으로 지정해야 함
+		set2.add("유재석");
+		set2.add("강호동");
+		set2.add("신동엽");
+		
+		System.out.println(set2); // [강호동, 신동엽, 유재석]
+		
+		// .descendingIterator() : 내림차순 정렬 -> 사용 시 인스턴스 타입을 Set 이 아닌 TreeSet 타입으로 지정해야 함
+		TreeSet<String> set3 = new TreeSet<String>();
+		
+		set3.add("유재석");
+		set3.add("강호동");
+		set3.add("신동엽");
+		
+		System.out.println(set3.descendingIterator()); 
 	}
 	
 }
