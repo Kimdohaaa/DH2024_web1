@@ -53,6 +53,8 @@ const addM = () => {
 				alert("고객등급을 바르게 입력하세요.")
 			}else if(data == 8){
 				alert("도시코드가 입력되지 않았습니다.")
+			}else if(data == 9){
+				alert("회원전화가 중복입니다.")
 			}
 		})
 		.catch(e => {console.log(e)})
@@ -74,24 +76,12 @@ const changeM = () => {
 	let mcityCh = document.querySelector(".mcityCh");
 	console.log(mnameCh, mphoneCh, maddrCh, mdateCh, mgradeCh, mcityCh);
 
-	/*
-	if (!mnameCh || !mphoneCh || !maddrCh || !mdateCh || !mgradeCh || !mcityCh) {
-	    alert("필수 필드가 누락되었습니다. 페이지를 확인해 주세요.");
-	    return;
-	}
-		*/		
 	let mname = mnameCh.value;
 	let mphone = mphoneCh.value;
 	let maddr = maddrCh.value;
 	let mdate = mdateCh.value;
 	let mgrade = mgradeCh.value;
 	let mcity = mcityCh.value;
-	/*
-	if (!mname || !mphone || !maddr || !mdate || !mgrade || !mcity) {
-	  alert("모든 필드를 입력해 주세요!");
-	  return;
-	}
-	*/
 		
 	let obj = {
 		mno : mno,
@@ -130,6 +120,8 @@ const changeM = () => {
 				alert("고객등급을 바르게 입력하세요.")
 			}else if(data == 8){
 				alert("도시코드가 입력되지 않았습니다.")
+			}else if(data == 9){
+				alert("회원전화가 중복입니다.")
 			}
 		})
 
