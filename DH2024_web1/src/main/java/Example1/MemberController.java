@@ -91,7 +91,9 @@ public class MemberController extends HttpServlet{
 		
 		int memberCheck = memberCheck(memberDto);
 		System.out.println(memberDto);
+		
 		resp.setContentType("application/json");
+		
 		if(memberCheck == 0) {
 			if(memberDto.getMgrade().equals("A")) {
 				memberDto.setMgrade("VIP");
@@ -102,7 +104,7 @@ public class MemberController extends HttpServlet{
 			}
 			System.out.println(memberDto.getMgrade());
 			
-			boolean result = TotalDao.getInstance().addM(memberDto);
+			boolean result = TotalDao.getInstance().updateM(memberDto);
 			
 			if(result) {
 				resp.getWriter().print(memberCheck);
