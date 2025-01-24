@@ -1,6 +1,5 @@
 @charset "UTF-8";
 *{
-	border: 1px solid red;
 	margin:  0 auto;
 	width: 1920px;
 }
@@ -8,6 +7,8 @@
 #headerWrap{
 	background-color: blue;
 	color:  white;
+	margin:  0px;
+	
 }
 .headerContent{
 	background-color: skyblue;
@@ -15,6 +16,10 @@
 	display: flex;
 	
 }
+#headerTitle{
+	background-color:  blue;
+}
+
 
 li{
 	display : flex;
