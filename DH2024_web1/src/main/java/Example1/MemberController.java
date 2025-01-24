@@ -41,6 +41,8 @@ public class MemberController extends HttpServlet{
 			
 			if(result) {
 				resp.getWriter().print(memberCheck);
+			}else {
+				resp.getWriter().print(9);
 			}
 		}
 		if(memberCheck == 1) {
@@ -108,6 +110,8 @@ public class MemberController extends HttpServlet{
 			
 			if(result) {
 				resp.getWriter().print(memberCheck);
+			}else {
+				resp.getWriter().print(9);
 			}
 		}
 		if(memberCheck == 1) {
@@ -171,7 +175,7 @@ public class MemberController extends HttpServlet{
 		if(memberDto.getMcity().equals("")) {
 			return 8;
 		}
-		
+
 	
 		return 0;
 	}
