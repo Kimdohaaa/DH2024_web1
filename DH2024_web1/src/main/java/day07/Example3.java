@@ -34,9 +34,14 @@ public class Example3 {
 		while(rs.hasNext()) {
 			System.out.println(rs.next());
 		}
-			// 5-1) 향상된 for 문
+			// 5-1) 향상된 for 문	-> iterator 기반으로 만들어진 문법
 		for(String str : set) {
 			System.out.println(str);
 		}
+		
+			// 5-2) .forEach() -> iterator 기반으로 만들어진 문법
+		set.forEach((str) -> {System.out.println(str);});
+		
 	}
+	
 }
