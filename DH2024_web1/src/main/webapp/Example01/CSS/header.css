@@ -1,0 +1,23 @@
+@charset "UTF-8";
+*{
+	border: 1px solid red;
+margin:  0 auto;
+	
+}
+
+#headerWrap{
+	background-color: blue;
+	color:  white;
+}
+.headerContent{
+	background-color: skyblue;
+	color:  white;
+}
+li{
+	
+	display : inline-block;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-right: 7%;
+	
+}

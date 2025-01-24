@@ -14,9 +14,9 @@
 				
 			</div>
 			<div>
-				차량 번호 : <input /> <br />
-				차량 위치 : <input /> <br />
-				<button>입차</button>
+				차량 번호 : <input class="inCnum"/> <br />
+				차량 위치 : <input class="inClot"/> <br />
+				<button onclick="inCar()">입차</button>
 				<button>출차</button>
 			</div>
 		</div>
