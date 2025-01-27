@@ -75,7 +75,7 @@
 		1) 구현체 : 저장된 순서(인덱스) 없이 key 와 value 로 entry(한쌍)를 저장하는 구조
 				-> key : 중복 불가
 				-> value : 중복 가능
-			- HasgMap 클래스
+			- HashMap 클래스
 			- HashTable 클래스 
 		2) 메소드
 			- .put(key, value) : Map 내 key 와 value 를 entry(한쌍)으로 저장
