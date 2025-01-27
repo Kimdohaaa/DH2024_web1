@@ -1,0 +1,58 @@
+[롬복]
+- 정의 : 반복되는 코드들을 줄여주는 라이브러리
+- 목적 : DTO / VO / Entity 에서 사용하기 위해
+	-> DTO(Data Transfer Object) : 데이터 이동 목적으로 사용되는 객체
+	-> VO(Value Object) : 데이터 값을 가진 객체(불변성(수정불가)의 특징을 가짐 -> setter 가 없음)
+	-> Entity(개체/본체) : 개체(본체) 데이터의 실체 -> 주로 DB 
+- 이클립스에 설치 
+	1. LOMBOK JAR 설치 : https://projectlombok.org/download
+	2. Download 1.18.36 다운로드
+	3. 프로젝트 -> SRC -> MAIN -> WEB-INF -> LIB 폴더에 저장
+- 롬복 설치
+	1. lombok.jar 클릭 -> [SHOW IN] -> [TERMINAL] -> java -jar lombok.jar [입력] -> lombok installer 가 실행됨
+	2. 라이브러리를 적용할 이클립스(IDE)를 선택 -> [INSTALL/UPDATE] -> install successful => !성공! -> [QUIT INSTALLER]
+	3. LIB 에 lombak.jar 오른쪽 클릭 -> [BUILD PATH] -> [ADD LIBRARIES] 하여 프로젝트에 빌드
+- 이클립스에 룸북 어노테이션 적용
+	1. 프로젝트명 오른쪽 클릭 -> [properties]
+	2. 검색란에 [annotation processing] -> [Enable project specific setting] 체크 -> [Apply Close]
+- 롬복 주요 @(어노테이션)
+	@NoArgsConstructor  : 디폴트 생성자 코드 생성
+		@NoArgsConstructor(access = lombok.AccessLevel.PRIVATE)	
+		-> 룸북 라이브러리를 통해 디폴트 생성자 코드 생성 private 적용(디폴트 : 패키지)
+	@AllArgsConstructor : 풀 매개변수 생성자 코드 생성
+	@Getter 			: 멤버변수의 getter 메소드 코드 생성
+		- @Getter class 클래스명 {} : 클래스 내 모든 멤버변수에 getter 메소드 생성
+		- @Getter 타입 변수명 : 클래스 내 특정 멤버변수에 getter 메소드 생성
+	@Setter 			: 멤버변수의 setter 메소드 코드 생성
+	@ToString			: 멤버변수의 ToString 메소드 코드 생성
+	@Builder			:
+	-> @어노테이션 클래스명 {} : 클래스 내 모든 멤버변수에 적용
+	-> @어노테이션 타입 변수명 : 클래스 내 특정 멤버변수에 적용
+	-> 프로젝트가 컴파일 시 지정된 어노테이션에 따라 코드 자동 생성
+
+[어노테이션(@)]
+- 정의 : JAVA / 라이브러리(프레임워크) 에서 코드에 메타데이터를 추가하는 문법
+- 목적 
+	1) 메타데이터 제공
+	2) 코드 간소화
+	3) 가독성 향상
+	* 메타 데이터 *
+		- 정의 : 코드를 설명하는 데이터 -> 데이터 구조를 통해 데이터를 관리 / 분석
+		- 목적 : 자바 코드에 추가적인 데이터를 주입 / 추가 하기 위함
+		- 동작방식
+			1) 컴파일 시 -> 실행 시
+			2) 리플렉션 시 -> 런타임(실행 중) 중 클래스를 읽어와 동적으로 메모리(JVM) 에 객체를 생성
+				예] Class.forName("com.mysql.cj.jdbc.Driver") -> Driver 클래스를 읽어들이고 인스턴스를 생성 => 리플렉션
+	
+- 어노테이션 종류
+	1. 표준 어노테이션 : 자바에서 기본적으로 제공하는 어노테이션 (자바에서 제공하기 때문에 생략하지만 웬만하면 쓰기!!!)
+	  ★	1) @Override   : 부모 메소드를 재정의함을 설명
+		2) @Deprecated : 더 이상 사용하지 않는 코드임을 설명
+		등등~~~
+	2. 메타 어노테이션 : 어노테이션 자체에 코드를 정의 시 또는 동작 제어 시 사용되는 어노테이션 -> 주로 라이브러리
+		1) 롬복 어노테이션
+	  ★ 2) 스프링 어노테이션
+		
+		
+		
+		
