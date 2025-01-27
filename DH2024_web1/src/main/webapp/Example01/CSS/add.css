@@ -38,12 +38,12 @@ h3{
 .addhead > tr{
 	width : 300px;
 	margin-right: 0;
-	height: 40px;
+	height: 30px;
 }
 .addbody > tr{
 	width : 300px;
 	margin-left: 0px;
-	height: 40px;
+	height: 30px;
 }
 th,td {
 	line-height: normal;
