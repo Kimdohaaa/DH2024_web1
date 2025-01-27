@@ -27,7 +27,7 @@
 				</thead>
 				
 				<tbody class="addbody">
-					<tr><td><input class="mnoCh"/></td></tr>
+					<tr><td><input class="mnoCh" placeholder="자동발생 됩니다."/></td></tr>
 					<tr><td><input class="mnameCh"/></td></tr>
 					<tr><td><input class="mphoneCh"/></td></tr>
 					<tr><td><input class="maddrCh"/></td></tr>
