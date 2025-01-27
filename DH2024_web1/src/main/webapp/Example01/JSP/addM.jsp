@@ -27,7 +27,7 @@
 				</thead>
 				
 				<tbody class="addbody">
-					<tr><td><input class="mnoIn"/></td></tr>
+					<tr><td><input class="mnoIn" placeholder="자동발생 됩니다."/></td></tr>
 					<tr><td><input class="mnameIn"/></td></tr>
 					<tr><td><input class="mphoneIn"/></td></tr>
 					<tr><td><input class="maddrIn"/></td></tr>
