@@ -89,8 +89,9 @@ public class MemberController extends HttpServlet{
 			}else {
 				resp.getWriter().print(9);
 			}
-			resp.getWriter().print(memberCheck);
 		}
+		resp.getWriter().print(memberCheck);
+
 	}
 	
 	public int memberCheck(MemberDto memberDto) {
