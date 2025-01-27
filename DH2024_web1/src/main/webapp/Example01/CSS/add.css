@@ -37,12 +37,17 @@ h3{
 }
 .addhead > tr{
 	width : 300px;
-	width : 100px;
 	margin-right: 0;
+	height: 40px;
 }
-.addbody > td{
+.addbody > tr{
 	width : 300px;
 	margin-left: 0px;
+	height: 40px;
+}
+th,td {
+	line-height: normal;
+	font-size: 16px;
 }
 .addBtn{
 	display : flex;
