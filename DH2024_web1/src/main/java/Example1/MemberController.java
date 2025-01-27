@@ -46,32 +46,6 @@ public class MemberController extends HttpServlet{
 			}
 		}
 		resp.getWriter().print(memberCheck);
-		/*
-		if(memberCheck == 1) {
-			resp.getWriter().print(memberCheck);
-		}
-		if (memberCheck == 2) {
-			resp.getWriter().print(memberCheck);
-		}
-		if (memberCheck == 3) {
-			resp.getWriter().print(memberCheck);
-		}
-		if (memberCheck == 4) {
-			resp.getWriter().print(memberCheck);
-		}
-		if (memberCheck == 5) {
-			resp.getWriter().print(memberCheck);
-		}
-		if (memberCheck == 6) {
-			resp.getWriter().print(memberCheck);
-		}
-		if (memberCheck == 7) {
-			resp.getWriter().print(memberCheck);
-		}
-		if (memberCheck == 8) {
-			resp.getWriter().print(memberCheck);
-		}
-		*/
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
