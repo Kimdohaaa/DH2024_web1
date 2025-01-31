@@ -3,8 +3,11 @@ package day08;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.Session;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,72 +19,43 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/day08/waiting")
 public class WaitingController extends HttpServlet{
 	
-	// private ArrayList<HashMap<String, String>> list = new ArrayList<>();
-	
+	// 대기 등록
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> Waiting POST");
-		
-		
-		// 상태를 저장할 변수 선언 //
+		// 상태를 저장할 임시 변수
 		boolean result = false;
 		
-		// [1] 요청
+		// 값 가져오기
 		ObjectMapper mapper = new ObjectMapper();
 		HashMap<String, String> map = mapper.readValue(req.getReader(), HashMap.class);
-		map.put("wno", "wno");
-		map.put("wcount", "wcount");
-		map.put("wphone", "wphone");
 		
-		ArrayList<HashMap<String, String>> list = null;
-		list.add(map);
-		// [] 세션 객체에서 값 가져오기
-		Object object =  req.getSession().getAttribute("list");
+		// 세션 객체 불러오기
+		HttpSession session = req.getSession();
 		
-		// [] 세션 객체가 null  이면
-		if( object == null ) {
-			
+		ArrayList<HashMap<String, String>> list = (ArrayList<HashMap<String, String>>)session.getAttribute("list");
+
+		   
+		if (list == null) {
 			list = new ArrayList<>();
-		// [] 세션 객체가 !null 이면
-		}else {
-			// list 에 세션 객체의 속성값 대입
-			list = (ArrayList<HashMap<String, String>>)object;
+			result = true;
 		}
 		
-		
-		// System.out.println(map);
-		// list.add(map);
+		list.add(map);
 
+		session.setAttribute( "list", list );
 		
-		req.setAttribute( "list", list );
+		session.setAttribute("wno", map.get("wno"));
 
 		resp.setContentType("application/json");
 		resp.getWriter().print(result);
-		//		
-//	
-//		HttpSession session = req.getSession();
-//		session.setAttribute("wno", map.get("wno"));
-//		session.setAttribute("wphone", map.get("wphone"));
-//		session.setAttribute("wcount", map.get("wcount"));
-//		
-//		System.out.println(session.getAttribute("wno"));
-//		System.out.println(session.getAttribute("wphone"));
-//		System.out.println(session.getAttribute("wcount"));
-//		
-//		Object object = session.getAttribute("wno");
-//		if(object != null) {
-//			result = true;
-//		}
-//
-//		resp.setContentType("application/json");
-//		resp.getWriter().print(result);
+		System.out.println(list);
 	}
 	
+	// 대기 전체 출력
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> Waiting Get");
-
-		
 
 		ArrayList<HashMap<String, String>> list = null;
 		
@@ -99,61 +73,38 @@ public class WaitingController extends HttpServlet{
 		
 		resp.setContentType("application/json");
 		resp.getWriter().print(jsonResult);
-		System.out.println(jsonResult);
-		
-		
-		//	
-//		HashMap<String,String> map = new HashMap<String, String>();
-//		
-//		HttpSession session = req.getSession();
-//		
-//		map.put("wno", session.getAttribute("wno")+ "");
-//		map.put("phone", session.getAttribute("wphone" )+ "");
-//		map.put("wcount", session.getAttribute("wcount" )+ "");
-//		
-//		ObjectMapper mapper = new ObjectMapper();
-//		
-//		String jsonResult = mapper.writeValueAsString(list);
-//		
-//		resp.setContentType("application/json");
-//		resp.getWriter().print(jsonResult);
-//		System.out.println(jsonResult);
-		
+		System.out.println(jsonResult);	
 	}
 	
+	// 대기 삭제
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> Waiting Delete");
-		
-		String delete = req.getParameter("wno");
-		
+	
 		boolean result = false;
 		
+		String delete = req.getParameter("wno");
 		
 		HttpSession session = req.getSession();
 		
 		
-		if(delete.equals(session.removeAttribute("wno"))) {
-			result = true;
-		}
-		/*
-		for(int i = 0; i < list.size(); i++) {
-			HashMap<String, String> index = list.get(i);
-				
-			if(index.get("wno").equals(delete)) {
-				list.remove(i);
-				result = true;
-	
-				session.removeAttribute("wno");
-				session.removeAttribute("wphone");
-				session.removeAttribute("wcount");
-			}
-		}
-	
-		*/
+		ArrayList<HashMap<String, String>> list = (ArrayList<HashMap<String, String>>)session.getAttribute("list");
+		
+		if (list != null && delete != null) {
+	        Iterator<HashMap<String, String>> iterator = list.iterator();
+	        while (iterator.hasNext()) {
+	            HashMap<String, String> map = iterator.next();
+	            if (map.get("wno").equals(delete)) {
+	                iterator.remove();
+	                result = true;
+	                break; 
+	            }
+	        }
+	    }
+		
 		resp.setContentType("application/json");
 		resp.getWriter().print(result);
-			}
+	}
 	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -163,30 +114,26 @@ public class WaitingController extends HttpServlet{
 		
 		ObjectMapper mapper = new ObjectMapper();
 		HashMap<String, String> map = mapper.readValue(req.getReader(), HashMap.class);
-	
+		String wno = map.get("wno");
 		
 		HttpSession session = req.getSession();
-		
-		for(int i = 0; i < list.size(); i++) {
-			HashMap<String, String> index = list.get(i);
 				
-			if(index.get("wno").equals(map.get("wno"))) {
-				map.put("wcount", map.get("wcount"));
+		ArrayList<HashMap<String, String>> list = (ArrayList<HashMap<String, String>>)session.getAttribute("list");
+		
+		
+	    if (list != null) {
+	        for (HashMap<String, String> index : list) {
+	            if (index.get("wno").equals(wno)) {
+	                index.put("wcount", map.get("wcount"));
+	                session.setAttribute("list", list);
+	                result = true;
+	                break;
+	            }
+	        }
+	    }
 
-				session.setAttribute("wcount", map.get("wcount"));
-
-				result = true;
-				break;
-			}
-		}
-		
-		if(result == true) {
-			resp.setContentType("application/json");
-			resp.getWriter().print(result);
-		}
-		
-		System.out.println(list);
-		
+		resp.setContentType("application/json");
+		resp.getWriter().print(result);
 		
 	}
 }
