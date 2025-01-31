@@ -3,6 +3,7 @@ package day09;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -26,7 +27,8 @@ public class Example4 extends HttpServlet{
 			// req.getServletContext().getRealPath("경로") : 서버 내 경로 반환
 		String uploadPath = req.getServletContext().getRealPath("/upload");
 		System.out.println(uploadPath);
-		// 자바 코드 실행 파일의 서버경로(배포후) 출력 : C:\Users\TJ-BU-702-PC22\Desktop\DH2024_web1\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\DH2024_web1\upload
+		// 자바 코드 실행 파일의 서버경로(배포후) 출력 : C:\Users\TJ-BU-702-PC22\Desktop\DH2024_web1
+		//									  \.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\DH2024_web1\파일명
 		
 		// 2) 지정한 경로의 File 객체 생성
 		File file = new File(uploadPath);
@@ -72,8 +74,19 @@ public class Example4 extends HttpServlet{
 					}else {							// 자료가 첨부파일일 시
 						System.out.println(">> 첨부 파일 : " + fileItem.getName());
 					
+						
+						// ★ 서로 다른 사용자가 동일한 파일명을 첨부할 경우 식별 불가 -> UUID(내장함수)를 사용하여 식별
+							// UUID : 16진수 형태로 5칸의 임의 자료 생성
+						String uuid = UUID.randomUUID().toString();	// String 타입으로 UUID 지정
+						System.out.println(uuid);
+						// ★ UUID 와 업로드 파일명 연결
+							//  .replaceAll() : 문자열 내 변경할 문자가 존재하면 새로운 문자로 치환
+							//					 -> 사용자가 입력한 값에 "-" 존재 시 "_"로 변경-> 하이픈은 UUID 구분용으로 사용해야 하기 때문에
+						String filename = uuid + fileItem.getName().replaceAll("-", "_");
+		
+					
 						// 3-8) 현재 경로에 파일명 붙이기
-						File uploadFile = new File(uploadPath + "/" + fileItem.getName());
+						File uploadFile = new File(uploadPath + "/" + uuid + fileItem.getName());
 						
 						// 3-9) 지정한 파일명으로 업로드
 						fileItem.write(uploadFile);	// 예외처리 발생
