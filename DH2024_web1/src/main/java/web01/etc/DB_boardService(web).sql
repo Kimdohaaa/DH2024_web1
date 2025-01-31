@@ -14,6 +14,7 @@ create table member(
     mname varchar(20) not null ,
     mphone varchar(13) not null unique , 
     mdate datetime default now() , 
+    mimg varchar(255) default 'default.jpg',
     constraint primary key( mno )
 ); # table end 
 
