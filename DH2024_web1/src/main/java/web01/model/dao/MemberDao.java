@@ -23,7 +23,7 @@ public class MemberDao extends Dao{
 	public boolean signup( MemberDto memberDto ) {
 		try {
 			// [1] SQL 작성한다.
-			String sql = "insert member(mid,mpwd,mname,mphone) value (?,?,?,?)";
+			String sql = "insert member(mid,mpwd,mname,mphone,mimg) value (?,?,?,?,?)";
 			
 			// [2] DB와 연동된 곳에 SQL 기재한다. 		- 연동된 DB 에 SQL 기재하는 방법 : conn.prepareStatement( SQL )
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -31,6 +31,7 @@ public class MemberDao extends Dao{
 			ps.setString(2, memberDto.getMpwd());
 			ps.setString(3, memberDto.getMname());
 			ps.setString(4, memberDto.getMphone());
+			ps.setString(5, memberDto.getMimg());
 			
 			// [3] 기재된 SQL를 실행하고 결과를 받는다. . 	- 기재된 SQL 을 실행하는 방법 : ps.executeUpdate()
 			int count = ps.executeUpdate();
