@@ -38,9 +38,13 @@ public class InfoController extends HttpServlet{
 			result = MemberDao.getInstance().myInfo(loginMno);	
 		}
 		
-		// [3] HTTP HEADER BODY 에게 JSON 타입으로 반환
+		// [3] 자바(DTO) 타입 -변환-> JS(JSON) 타입
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonResult = mapper.writeValueAsString( result );
+		
+		// [4] HTTP HEADER BODY 에게 JSON 타입으로 반환
 		resp.setContentType("application/json");
-		resp.getWriter().print(result);
+		resp.getWriter().print(jsonResult);
 	}
 	
 	// [2] 회원 탈퇴
