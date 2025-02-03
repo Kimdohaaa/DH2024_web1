@@ -51,8 +51,8 @@
 	          </div>
 	          	    
 	          <div class="form-floating mb-3">
-	            <input type="text" name="memail" class="form-control" id="floatingInput" placeholder="계정이메일">
-	            <label for="floatingInput">계정 이메일</label>
+	            <input type="text" name="mphone" class="form-control" id="floatingInput" placeholder="계정연락처">
+	            <label for="floatingInput">계정 연락처</label>
 	          </div>
 	          
 	          <div class="form-floating mb-3">
