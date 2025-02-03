@@ -26,7 +26,7 @@ const onSignUp = () => {
 			if(data == true){
 				alert('회원가입 성공');
 				// 회원가입 성공 시 로그인 페이지로 전환
-				location.href="/DH2024_web1/web01/login.jsp";
+				location.href="login.jsp";
 			}else{
 				alert('회원가입 실패');
 			}
