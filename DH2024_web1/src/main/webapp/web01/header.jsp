@@ -24,44 +24,37 @@
 	    </button>
 	    
 	    
-	    <!-- 메뉴 박스  -->
+	    <!-- 메뉴 -->
 	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    
-	     <!--  메뉴 리스트  -->
-	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	    	<!--  메뉴 항목  -->
-	        <li class="nav-item">
-	          <a class="nav-link" href="/DH2024_web1/web01/member/login.jsp">로그인</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="/DH2024_web1/web01/member/signup.jsp">회원가입</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="#">게시판</a>
-	        </li>
-	        
-	        <li class="nav-item dropdown">
-	          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-	            제품
-	          </a>
-	    
-	          <ul class="dropdown-menu">
-	            <li><a class="dropdown-item" href="#">Action</a></li>
-	            <li><a class="dropdown-item" href="#">Another action</a></li>
-	            <li><hr class="dropdown-divider"></li>
-	            <li><a class="dropdown-item" href="#">Something else here</a></li>
-	          </ul>
-	    
-	        </li>
-	      </ul>
-	      <form class="d-flex" role="search">
-	        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	        <button class="btn btn-outline-success" type="submit">Search</button>
-	      </form>
+	    	<!-- 왼쪽 메뉴 목록  -->
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<!--  메뉴 항목 -->
+			  <li class="nav-item"> <a class="nav-link" href="#">게시판</a> </li>
+			  
+			  <li class="nav-item dropdown">
+			    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			      제품
+			    </a>
+			    <ul class="dropdown-menu">
+			      <li><a class="dropdown-item" href="#">Action</a></li>
+			      <li><a class="dropdown-item" href="#">Another action</a></li>
+			      <li><hr class="dropdown-divider"></li>
+			      <li><a class="dropdown-item" href="#">Something else here</a></li>
+			    </ul>
+			  </li>
+			</ul>
+			
+			<!-- 오른쪽 메뉴 목록 -->
+			<ul class="navbar-nav me-end mb-2 mb-lg-0 loginmenu"> <!-- me-end : 오른쪽 정렬 -->
+
+			</ul>
+			
 	    </div>
 	  </div>
 	</nav>
 	
+	<script src="/DH2024_web1/web01/js/header.js"></script>
 	<!--  부트스트랩 JS  -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
