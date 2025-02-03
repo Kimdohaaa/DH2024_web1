@@ -63,6 +63,7 @@
 	      	
 	          <hr class="my-4">
 	      
+	      	          <small class="text-body-secondary"><a class="nav-link" href="login.jsp">로그인</a></small>
 	          <small class="text-body-secondary"><a class="nav-link" href="#">아이디 찾기</a></small>
 	          <small class="text-body-secondary"><a class="nav-link" href="#">비밀번호 찾기</a></small>
 	      
