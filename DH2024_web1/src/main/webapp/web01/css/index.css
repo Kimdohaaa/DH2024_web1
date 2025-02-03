@@ -1,12 +1,27 @@
 @charset "UTF-8";
+
 /* header logo */
 .header_logo{
 	width: 60px;
 }
 
+/* 폰트 적용 */
 @font-face {
      font-family: 'S-CoreDream-3Light';
      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
      font-weight: normal;
      font-style: normal;
+}
+*{
+	font-family: 'S-CoreDream-3Light';
+}
+
+.header_profile{
+	width: 70px;
+	height: 70px;
+	border-radius: 30px;
+	padding: 1px;
+	margin-left : 5px;
+	border:  1px solid #e8e8e8; 
+	object-fit : cover;
 }
