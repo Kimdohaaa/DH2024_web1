@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import web01.model.dao.MemberDao;
 import web01.model.dto.MemberDto;
 
-@WebServlet("/member/singup")
+@WebServlet("/member/signup")
 public class SignUpController extends HttpServlet{
 	/*
  	// 업로드 전 버전 (프로필 등록 불가능)
