@@ -22,5 +22,7 @@ public class MemberDto {
 	private String mdate;	// 가입일 
 	private String mimg; 	// 프로필 사진
 	private int mpoint;
+	private String mpname;
+	private int total;
 	
 }		
