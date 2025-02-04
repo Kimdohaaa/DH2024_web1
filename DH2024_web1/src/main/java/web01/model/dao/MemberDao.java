@@ -37,7 +37,9 @@ public class MemberDao extends Dao{
 			int count = ps.executeUpdate();
 			
 			// [4] 결과에 따른 처리 및 반환를 한다.
-			if( count == 1 ) { return true; }
+			if( count == 1 ) { 
+				return true; 
+			}
 		}catch( SQLException e ) { System.out.println( e ); }
 		
 		return false;
@@ -124,6 +126,71 @@ public class MemberDao extends Dao{
 		}catch (SQLException e) {		System.out.println( e ); }
 		return false; // 수정 실패 했을때.
 	} // f end							
+
+	// 포인트 조회
+	public void point(int mno) {
+		try {
+			String sql = "select * from point";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			boolean state = false;
+			while(rs.next()) {
+				int i = rs.getInt("mno");
+				if(i == mno) {
+					state = true;
+					break;
+				}
+			}
+			
+			if(state == true) {
+				pointUp(mno);
+			}else if(state == false) {
+				pointIn(mno);
+			}
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
+	// [6] 회원가입 포인트 지급
+	public boolean pointIn(int mno) {
+		try {
+
+			String sql = "insert into point (pname, pcount, mno) values ('회원가입','100', ?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, mno);
+			
+			
+			int count = ps.executeUpdate();
+			if(count == 1) {
+				return true;
+			}
+			
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+		return false;
+	}
+	
+	// [8] 로그인 포인트 지급
+	public boolean pointUp(int mno) {
+		try {
+			String sql = "insert into point (pname, pcount, mno) values ('로그인','1', ?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, mno);
+			
+			int count = ps.executeUpdate();
+			
+			if(count == 1) {
+				return true;
+			}
+			
+		}catch (SQLException e) {
+			System.out.println();
+		}
+		return false;
+	}
 }
 
 

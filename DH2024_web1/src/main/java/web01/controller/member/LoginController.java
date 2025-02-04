@@ -29,6 +29,7 @@ public class LoginController extends HttpServlet{
 		// [3] DAO 에게 데이터 전달 / 응답 받기
 		int loginMno = MemberDao.getInstance().login(memberDto);
 		
+		
 		// [4] ★ 로그인 성공 시 세션 처리 ★
 		if(loginMno > 0) {
 			// 세션 : 톰캣 서버의 저장소 / 메모리
@@ -38,6 +39,13 @@ public class LoginController extends HttpServlet{
 			session.setAttribute("loginMno", loginMno);
 			// 3) 세션 객체의 활성화 유지 시간 지정
 			session.setMaxInactiveInterval(60*10); 	// 세션 객체의 활성화 시간을 10 분으로 지정
+		
+			Object object = session.getAttribute("loginMno");
+
+			if(object != null) {
+				int mno = (Integer)object;
+				MemberDao.getInstance().point(mno);
+			}
 		}
 		
 		// [5] HTTP HEADER BODY 에게 객체(DTO)를 JS(JSON) 타입으로 반환

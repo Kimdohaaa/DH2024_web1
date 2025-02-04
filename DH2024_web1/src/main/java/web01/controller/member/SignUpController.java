@@ -16,6 +16,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import web01.model.dao.MemberDao;
 import web01.model.dto.MemberDto;
 
@@ -106,6 +107,7 @@ public class SignUpController extends HttpServlet{
 		// [13] 첨부파일이 아닌 일반 텍스트 파일 파싱
 		MemberDto memberDto = new MemberDto();
 		
+		
 			// 지정 필드의 텍스트 가져오기
 		memberDto.setMid(fileList.get(0).getString());
 		memberDto.setMpwd(fileList.get(1).getString());
@@ -115,7 +117,8 @@ public class SignUpController extends HttpServlet{
 		
 		// [14] DAO 에게 전달 / 응답 받기
 		boolean result = MemberDao.getInstance().signup(memberDto);
-				
+		
+		
 		// [15] HTTP 로 response(응답) 할 객체(DTO) 타입을 JS(JSON) 타입으로 변환
 		resp.setContentType("application/json");
 				
@@ -127,6 +130,8 @@ public class SignUpController extends HttpServlet{
 			System.out.println(e);
 		}
 	}
+	
+	
 }
 
 
