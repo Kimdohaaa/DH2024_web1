@@ -104,7 +104,7 @@ public class MemberDao extends Dao{
     public ArrayList<PointDto> pointList( int loginMno ) {
     	ArrayList<PointDto> list = new ArrayList<PointDto>();
             try {
-                    String sql ="select p.mno , m.mid, m.mname, m.mphone, m.mdate, m.mimg , p.pcount, p.pname"
+                    String sql ="select p.mno , m.mid, m.mname, m.mphone, p.pdate, m.mimg , p.pcount, p.pname"
                     		+ "	from point p join member m on m.mno = p.mno where p.mno = ? ";
                     // [1] SQL 작성한다.
                     PreparedStatement ps = conn.prepareStatement(sql); 
@@ -118,9 +118,10 @@ public class MemberDao extends Dao{
                     	// [4] 결과에 따른 처리 및 반환를 한다.
                             pointDto.setPname(rs.getString("pname"));
                             pointDto.setPcount(rs.getInt("pcount"));
-                            
+                            pointDto.setPdate(rs.getString("pdate"));
                             System.out.println(pointDto.getPcount());
                             System.out.println(pointDto.getPname());
+                            System.out.println(pointDto.getPdate());
                             
                             list.add(pointDto);
                     }
@@ -161,7 +162,7 @@ public class MemberDao extends Dao{
 		return false; // 수정 실패 했을때.
 	} // f end							
 
-	// 포인트 조회
+	// [7] 상태에 따른 포인트 지급 결정
 	public void point(int mno) {
 		try {
 			String sql = "select * from point";
@@ -187,7 +188,7 @@ public class MemberDao extends Dao{
 		}
 	}
 	
-	// [7] 회원가입 포인트 지급
+	// [8] 회원가입 포인트 지급
 	public boolean pointIn(int mno) {
 		try {
 
@@ -207,7 +208,7 @@ public class MemberDao extends Dao{
 		return false;
 	}
 	
-	// [8] 로그인 포인트 지급
+	// [9] 로그인 포인트 지급
 	public boolean pointUp(int mno) {
 		try {
 			String sql = "insert into point (pname, pcount, mno) values ('로그인','1', ?)";
@@ -226,7 +227,7 @@ public class MemberDao extends Dao{
 		return false;
 	}
 	
-	// [9] 로그인된 회원의 정보 조회(아이디 / 전화번호 / 프로필 / 현재 총 포인트)
+	// [10] 로그인된 회원의 정보 조회(아이디 / 전화번호 / 프로필 / 현재 총 포인트)
 	public MemberDto totalP(int loginMno) {
 		
 		try {
