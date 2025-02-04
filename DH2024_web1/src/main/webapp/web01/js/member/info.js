@@ -23,6 +23,7 @@ const getMyInfo = () => {
 }
 getMyInfo(); // JS 실행 시 최초 한 번 실행
 
+// [2] 현재 로그인된 회원정보 요청 함수(포인트 내역)
 const getPoint = () => {
 	
 	let tbody = document.querySelector("tbody");
@@ -31,26 +32,25 @@ const getPoint = () => {
 	
 	fetch("/DH2024_web1/member/pointlist") // GET 생략(기본값이기 때문)		
 		.then(res => res.json())
-		.then(data => {
+		.then(data => {	// 해당 회원의 포인트 전체 내역 조회이기 때문에 .forEach 메소드를 통해 반복
 			data.forEach(obj=> { // 만약 로그인 상태라면
 				
-				html += `<tr> <td>${obj.pname}</td> <td>${obj.pcount}</td></tr>`
+				html += `<tr> <td>${obj.pname}</td> <td>${obj.pcount}</td> <td> ${obj.pdate}</td></tr>`
 			})
 			
 			tbody.innerHTML = html;
 		})
 		.catch(e => {console.log(e)})	// 예외처리
 }
-getPoint();
-// [2] 회원수정 페이지 이동
+getPoint();// JS 실행 시 최초 한 번 실행
+
+// [3] 회원수정 페이지 이동
 const onUpdate = () => {
 	
 	location.href = "update.jsp";	// update.jsp 페이지로 이동
 									// 세션을 사용하기 때문에 쿼리스트링으로 PK 키를 넘기지 않아도 됨
 			
 }
-
-
 
 // [4] 회원 탈퇴
 const onDelete = () => {
