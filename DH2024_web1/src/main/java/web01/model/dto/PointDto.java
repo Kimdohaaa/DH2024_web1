@@ -17,4 +17,5 @@ public class PointDto {
 	private String pname;
 	private int pcount;
 	private int mno;
+	private String pdate;
 }
