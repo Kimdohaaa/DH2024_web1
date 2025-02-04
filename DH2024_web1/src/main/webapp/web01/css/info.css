@@ -10,3 +10,6 @@
 .mimgbox{
 	text-align: center;
 }
+#wrap{
+	display:  flex;;
+}
