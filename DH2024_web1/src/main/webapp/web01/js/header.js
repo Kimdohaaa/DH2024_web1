@@ -25,7 +25,7 @@ const getLoginInfo = () => {
 					// 로그인 상태일 경우
 					html += `<li class="nav-item">
 							    <a class="nav-link" href="#""><img class="header_profile" src="/DH2024_web1/upload/${data.mimg}"/>${data.mid} 님</a>
-							 	<ul class="dropdown-menu>
+							 	<ul class="dropdown-menu">
 									<li class="nav-item">
 							     		 <a class="nav-link" href="/DH2024_web1/web01/member/info.jsp">마이페이지</a>
 							 		</li>
