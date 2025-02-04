@@ -14,7 +14,7 @@
 	
 	<!-- 회원가입 페이지 -->
 	<h1> 회원가입 페이지 </h1>
-	
+	<div id="wrap">
 	<!-- 부트스트랩 -->
 	<div class="container col-xl-10 col-xxl-8 px-4 py-5">
 	    <div class="row align-items-center g-lg-5 py-5">
@@ -43,6 +43,7 @@
 	            <label for="floatingInput">계정 연락처</label>
 	          </div>
 	          
+	          
 	          <!--  disabled input 막기 -->
 	          <!--  readonly : 읽기 모드(수정금지) -->
 	          
@@ -52,14 +53,34 @@
 	      	  <hr class="my-4">
 	      	  
 	      	  <button class="w-100 btn btn-lg btn-primary" type="button" onclick="onDelete()">회원 탈퇴</button>
-	      	
-	          
-	     
+	      	</form>
+	        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+		       <div class="form-floating mb-3">
+		           
+		           	<table class="table" border="1">
+		          	
+		          		<thead>
+		          			<tr>
+		          				<th> 포인트 항목 </th>
+		          			
+		          				<th> 포인트 </th>
+		          			</tr>
+		          			
+		          		</thead>
+		          		
+		          		<tbody>
+		          		
+		          		</tbody>
+		          	
+		          	</table>
+		        </div> 	  
+		     
 	        </form>
 	      
 	      </div>
+	    
     </div>
-    
+    </div>
     <script src="/DH2024_web1/web01/js/member/info.js"></script>
 </body>
 </html>
