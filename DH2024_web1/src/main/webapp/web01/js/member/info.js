@@ -2,6 +2,7 @@
 
 // [1] 현재 로그인된 회원정보 요청 함수(내 정보 조회)
 const getMyInfo = () => {
+	
 	// 1. fetch 욥션
 	
 	fetch("/DH2024_web1/member/info") // GET 생략(기본값이기 때문)		
@@ -16,11 +17,31 @@ const getMyInfo = () => {
 				document.querySelector(".mimg").src = `/DH2024_web1/upload/${data.mimg}`;								
 				
 			}
+			
 		})
 		.catch(e => {console.log(e)})	// 예외처리
 }
 getMyInfo(); // JS 실행 시 최초 한 번 실행
 
+const getPoint = () => {
+	
+	let tbody = document.querySelector("tbody");
+	let html = ``;
+	// 1. fetch 욥션
+	
+	fetch("/DH2024_web1/member/pointlist") // GET 생략(기본값이기 때문)		
+		.then(res => res.json())
+		.then(data => {
+			data.forEach(obj=> { // 만약 로그인 상태라면
+				
+				html += `<tr> <td>${obj.pname}</td> <td>${obj.pcount}</td></tr>`
+			})
+			
+			tbody.innerHTML = html;
+		})
+		.catch(e => {console.log(e)})	// 예외처리
+}
+getPoint();
 // [2] 회원수정 페이지 이동
 const onUpdate = () => {
 	
