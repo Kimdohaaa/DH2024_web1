@@ -1,6 +1,8 @@
 package web01.controller.member;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -15,6 +17,7 @@ import web01.model.dto.MemberDto;
 
 @WebServlet("/member/info")
 public class InfoController extends HttpServlet{
+	
 	// [1] 내정보 조회
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,7 +25,7 @@ public class InfoController extends HttpServlet{
 		
 		// 정보를 저장할 인스턴스 생성 //
 		MemberDto result = null;
-		
+
 		// [1] 세션
 			// 1) 세션 객체 가져오기
 		HttpSession session = req.getSession();
@@ -36,16 +39,18 @@ public class InfoController extends HttpServlet{
 			int loginMno = (Integer)object;
 			// 2) DAO 에게 현재 로그인된 회원 번혼 전달(세션 객체에 있음) / 응답 받기
 			result = MemberDao.getInstance().myInfo(loginMno);	
+				// 로그인 시 회원의 상태 (최초로그인 true / false) 에 따라 DAO 에서 판단하여 포인트 부여
 		}
 		
 		// [3] 자바(DTO) 타입 -변환-> JS(JSON) 타입
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString( result );
+		String jsonResult = mapper.writeValueAsString(result );
 		
 		// [4] HTTP HEADER BODY 에게 JSON 타입으로 반환
 		resp.setContentType("application/json");
 		resp.getWriter().print(jsonResult);
 	}
+	
 	
 	// [2] 회원 탈퇴
 	@Override
