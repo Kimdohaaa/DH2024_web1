@@ -29,7 +29,7 @@ const onLogin = () => {
 	fetch("/DH2024_web1/member/login", option)
 		.then(res => res.json())
 		.then(data => {
-			if(data > 0){
+			if(data > 0){	// back 에서 전송받은 loginMno 가 존재할 시
 				alert('로그인 성공');
 				location.href = "../index.jsp";	// 성공 시 메인페이지로 이동
 			}else{
