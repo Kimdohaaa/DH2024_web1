@@ -12,6 +12,7 @@
      font-weight: normal;
      font-style: normal;
 }
+
 *{
 	font-family: 'S-CoreDream-3Light';
 }
@@ -25,4 +26,3 @@
 	border:  1px solid #e8e8e8; 
 	object-fit : cover;
 }
-
