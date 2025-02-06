@@ -20,4 +20,7 @@ public class BoardDto {
 	private String bdate;
 	private int mno;
 	private int cno;
+	
+	// + HTML 에 출력 시 작성자의 회원번호가 아닌 아이디를 출력하기 위한 멤버변수
+	private String mid;
 }
