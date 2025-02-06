@@ -14,10 +14,10 @@ import lombok.ToString;
 @ToString
 public class BoardDto {
 	private int bno ;
-	private String bTitle;
-	private String bContent;
-	private String bWriter;
-	private String bPwd;
-	private int bView;
-	private String bDate;
+	private String btitle;
+	private String bcontent;
+	private int bview;
+	private String bdate;
+	private int mno;
+	private int cno;
 }
