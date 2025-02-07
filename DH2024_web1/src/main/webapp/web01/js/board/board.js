@@ -17,7 +17,7 @@ const findall = () => {
 		.then(data => {
 			console.log(data)
 			// data 를 출력할 구역 DOM 객체 가져오기
-			const boardlist = document.querySelector(".boardlist");
+			const boardlist = document.querySelector(".boardlist > tbody");
 			
 			let html = ``;
 			
@@ -25,7 +25,7 @@ const findall = () => {
 			data.forEach((board) => {
 				html += `<tr> 
 							<td> ${board.bno} </td>
-							<td> ${board.btitle} </td>
+							<td> <a href="view.jsp?bno=${board.bno}"> ${board.btitle} </a></td>
 							<td> ${board.mid} </td>
 							<td> ${board.bdate} </td>
 							<td> ${board.bview} </td> 

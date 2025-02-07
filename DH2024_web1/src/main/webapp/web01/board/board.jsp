@@ -12,7 +12,7 @@
 		
 	<div class="container">
 	<button onclick="location.href='write.jsp'" type="button" class="btn btn-primary"> 작성하기 </button>
-		<table class="table">
+		<table class="table boardlist">
 			<thead>
 				<tr>
 					<th> 번호 </th>
@@ -23,7 +23,7 @@
 				</tr>
 			</thead>
 			
-			<tbody class=" boardlist">
+			<tbody>
 			
 			</tbody>
 		</table>
