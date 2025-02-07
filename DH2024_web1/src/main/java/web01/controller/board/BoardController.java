@@ -47,13 +47,16 @@ public class BoardController extends HttpServlet{
 		resp.getWriter().print(result);
 	}
 	
-	// [2] 게시물 전체 조회
+	// [2] 게시물 카테고리 별 전체 조회
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("BOARD GET");
 		
+		// JS 에서 쿼리스트링으로 보낸 cno 가져오기 / 형변환
+		int cno = Integer.parseInt(req.getParameter("cno"));
+		
 		// [1] 전체 출력이기 때문에 배열 변수를 생성하여 DAO 에서 결과 받기
-		ArrayList<BoardDto> result = BoardDao.getInstance().findAll();
+		ArrayList<BoardDto> result = BoardDao.getInstance().findAll(cno);
 		
 		// [2] DAO 에서 반환받은 결과 JSON 타입으로 형변환
 		ObjectMapper mapper = new ObjectMapper();

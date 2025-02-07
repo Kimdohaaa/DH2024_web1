@@ -29,8 +29,12 @@
 	    
 	    	<!-- 왼쪽 메뉴 목록  -->
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<!--  메뉴 항목 -->
-			  <li class="nav-item"> <a class="nav-link" href="#">게시판</a> </li>
+			  <!-- 게시판 카테고리 별 메뉴 항목(쿼리스트링으로 카테고리 PK 키 보내기) -->
+			  <li class="nav-item"> <a class="nav-link" href="/DH2024_web1/web01/board/board.jsp?cno=1">뉴스</a> </li>
+			  <li class="nav-item"> <a class="nav-link" href="/DH2024_web1/web01/board/board.jsp?cno=2">이벤트</a> </li>
+			  <li class="nav-item"> <a class="nav-link" href="/DH2024_web1/web01/board/board.jsp?cno=3">FAQ</a> </li>
+			  <li class="nav-item"> <a class="nav-link" href="/DH2024_web1/web01/board/board.jsp?cno=4">튜토리얼</a> </li>
+			  <li class="nav-item"> <a class="nav-link" href="/DH2024_web1/web01/board/board.jsp?cno=5">사용자리뷰</a> </li>
 			  
 			  <li class="nav-item dropdown">
 			    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

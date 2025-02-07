@@ -7,9 +7,7 @@ const getLoginInfo = () => {
 	let html = ``;
 	
 	
-	const option = {method : 'GET'}	// 생략 가능 -> 'GET' 이 기본값이기 때문
-	
-	fetch('/DH2024_web1/member/point', option)
+	fetch('/DH2024_web1/member/point', {method : `GET`})
 		.then(res => res.json())
 		.then(data => {
 			console.log(data); // 주의점 : 코드 변경 후 서버가 자동 재실행 시 세션 초기화(로그아웃)됨
