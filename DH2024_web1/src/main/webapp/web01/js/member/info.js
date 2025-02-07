@@ -1,4 +1,4 @@
-// console.log('info.js open');
+console.log('info.js open');
 
 // [1] 현재 로그인된 회원정보 요청 함수(내 정보 조회)
 const getMyInfo = () => {
