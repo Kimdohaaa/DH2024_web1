@@ -48,14 +48,16 @@ public class BoardDao extends Dao{
 		return false;
 	}
 	
-	// [2] 게시물 전체 출력
-	public ArrayList<BoardDto> findAll() {
+	// [2] 게시물 카테고리 별 전체 출력
+	public ArrayList<BoardDto> findAll(int cno) {
 		ArrayList<BoardDto> list = new ArrayList<BoardDto>();
 		try {
 			String sql = "select b.* , m.mid"
-					+ "	from board b join member m on b.mno = m.mno order by bno asc";
+					+ "	from board b join member m on b.mno = m.mno where b.cno = ? order by bno asc";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, cno);
+			
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
