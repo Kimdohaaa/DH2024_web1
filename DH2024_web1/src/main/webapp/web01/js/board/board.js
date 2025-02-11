@@ -77,8 +77,59 @@ const findall = () => {
 			})
 			// HTML 에 출력
 			boardlist.innerHTML = html;
+			getPageBtn(page) // 페이징 버튼 생성 함수 실행
 		})
 		.catch(e => {console.log(e)}) // 예외처리
 	
 }
-findall()
+findall()	//  JS  실행 시 최초 실행
+
+// 페이지 버튼 생성 함수 (rptlanf cnffur gn qksqhr)
+const getPageBtn = (page) => {	// 현재 페이지 번호 매개변수로 가져오기
+	
+	// page 가 문자열로 들어오기 때문에 형변환
+	page = parseInt(page);
+	
+	
+	let cno = new URL(location.href).searchParams.get("cno");
+	
+	// 1. 어디에
+	let pageBtnBox = document.querySelector(".pagebtnbox");
+	
+	// 2. 무엇을	
+	let html = ``;
+	
+	// 이전 버튼 (삼항 연산자 추가 : 만약 페이지가 1보다 작으면 page = 0 / 크면 현재 페이지 번호)
+	html += `<li class="page-item">
+						<a class="page-link" href="board.jsp?cno=${cno}&page=${page <= 1? 1: page-1}">
+							이전
+						</a>
+					</li>`
+	// 1 ~ 10 까지 버튼 생성 반복
+		// 필요한 데이터 : 최대페이지 , 현재 페이지의 버튼의 시작번호 , 현재 페이지의 버튼의 끝번호 구하기
+		// 버튼 시작 번호 : ((page - 1)/ 페이지 당 버튼 수) * 페이지 당 버튼 수 + 1
+		// 버튼 끝 번호 : 시작버튼 + (페이지 당 버튼 수  - 1)
+	for(let index = 1; index <= 10; index++){
+		html += `<li class="page-item">
+					<a class="page-link" href="board.jsp?cno=${cno}&page=${index}">
+						${index}
+					</a>
+				</li>`		
+	}
+	
+	// 다음 버튼 (만약 페이지가 최대페이지면 페이지는 해당 페이지)
+	html += `<li class="page-item">
+						<a class="page-link" href="board.jsp?cno=${cno}&page=${page+1}">
+							다음
+						</a>
+					</li>`	
+	// 3. 출력
+	pageBtnBox.innerHTML = html;	
+}
+
+
+
+
+
+
+
