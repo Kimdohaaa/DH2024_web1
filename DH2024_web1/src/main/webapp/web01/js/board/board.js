@@ -42,7 +42,7 @@ const findall = () => {
 findall() // JS 실행 시 최초 실행
 */
 
-// <카테고리별 출력 + 페이징 처리 코드>
+// [2] 카테고리별 출력 + 페이징 처리 코드
 const findall = () => {
 	// 백엔드에 카테고리번호(cno) 와 페이지 번호(pno)를 쿼리스트링으로 전송
 
@@ -58,15 +58,17 @@ const findall = () => {
 	// URL 상의 쿼리스트링 매개변수 controller 로 전달
 	fetch(`/DH2024_web1/board?cno=${cno}&page=${page}` ) // GET 생략
 		.then(res => res.json())
-		.then(data => {
-			console.log(data)
+		.then(response => {
+			console.log(response)
 			// data 를 출력할 구역 DOM 객체 가져오기
 			const boardlist = document.querySelector(".boardlist > tbody");
 			
 			let html = ``;
+
+			let blist = response.data;
 			
-			// 전체 출력이기 때문에 반복문을 이용하여 출력
-			data.forEach((board) => {
+			// 전체 출력이기 때문에 반복문을 이용하여 출력 (data(PageDTO) 의 멤버변수인 data(result) 반복)
+			blist.forEach((board) => {
 				html += `<tr> 
 							<td> ${board.bno} </td>
 							<td> <a href="view.jsp?bno=${board.bno}"> ${board.btitle} </a></td>
@@ -77,21 +79,20 @@ const findall = () => {
 			})
 			// HTML 에 출력
 			boardlist.innerHTML = html;
-			getPageBtn(page) // 페이징 버튼 생성 함수 실행
+			getPageBtn(response , cno) // 페이징 버튼 생성 함수 실행(response 데이터 매개변수로 전달)
 		})
 		.catch(e => {console.log(e)}) // 예외처리
 	
 }
 findall()	//  JS  실행 시 최초 실행
 
-// 페이지 버튼 생성 함수 (rptlanf cnffur gn qksqhr)
-const getPageBtn = (page) => {	// 현재 페이지 번호 매개변수로 가져오기
+// [1] 페이지 버튼 생성 함수 (rptlanf cnffur gn qksqhr)
+const getPageBtn = (response, cno) => {	// 현재 페이지 번호 매개변수로 가져오기
 	
 	// page 가 문자열로 들어오기 때문에 형변환
-	page = parseInt(page);
+	page = parseInt(response.page);
 	
-	
-	let cno = new URL(location.href).searchParams.get("cno");
+
 	
 	// 1. 어디에
 	let pageBtnBox = document.querySelector(".pagebtnbox");
@@ -105,21 +106,23 @@ const getPageBtn = (page) => {	// 현재 페이지 번호 매개변수로 가져
 							이전
 						</a>
 					</li>`
-	// 1 ~ 10 까지 버튼 생성 반복
+	// 시작버튼 ~ 끝 버튼 까지 버튼 생성 반복
 		// 필요한 데이터 : 최대페이지 , 현재 페이지의 버튼의 시작번호 , 현재 페이지의 버튼의 끝번호 구하기
 		// 버튼 시작 번호 : ((page - 1)/ 페이지 당 버튼 수) * 페이지 당 버튼 수 + 1
 		// 버튼 끝 번호 : 시작버튼 + (페이지 당 버튼 수  - 1)
-	for(let index = 1; index <= 10; index++){
+	for(let index = response.startbtn; index <= response.endbtn; index++){
+			
+		// 만약 현재 페이지가 index 와 같다면 부트스트랩의 active 적용
 		html += `<li class="page-item">
-					<a class="page-link" href="board.jsp?cno=${cno}&page=${index}">
+					<a class="page-link ${page == index ? 'active' : ''}" href="board.jsp?cno=${cno}&page=${index}">
 						${index}
 					</a>
 				</li>`		
 	}
 	
-	// 다음 버튼 (만약 페이지가 최대페이지면 페이지는 해당 페이지)
+	// 다음 버튼 (현재 페이지가 전체 페이지 수 이면 현재 페이지로 고정)
 	html += `<li class="page-item">
-						<a class="page-link" href="board.jsp?cno=${cno}&page=${page+1}">
+						<a class="page-link" href="board.jsp?cno=${cno}&page=${page >= response.totalpage ? page : page +1}">
 							다음
 						</a>
 					</li>`	
