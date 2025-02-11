@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import web01.model.dao.BoardDao;
 import web01.model.dto.BoardDto;
+import web01.model.dto.PageDto;
 
 @WebServlet("/board")
 public class BoardController extends HttpServlet{
@@ -87,9 +88,19 @@ public class BoardController extends HttpServlet{
 		// [1] 전체 출력이기 때문에 배열 변수를 생성하여 DAO 에서 결과 받기 
 		ArrayList<BoardDto> result = BoardDao.getInstance().findAll(cno, startRow, display);
 		
+		
+			// 8. 페이징 DTO 인스턴스 생성
+			PageDto pageDto = new PageDto();
+			pageDto.setTotalcount(totalSize);	// 조회된 전체 게시물 수
+			pageDto.setPage(page);				// 현재 페이지
+			pageDto.setTotalpage(totalPage);	// 전체 페이지 수
+			pageDto.setStartbtn(startBtn);		// 페이징 버튼 시작 번호
+			pageDto.setEndbtn(endBtn);			// 페이징 버튼 끝 번호
+			pageDto.setData(result);			// 페이징 처리된 데이터 (어떤 데이터가 들어올지 알 수 없기 때문에 DTO 생성 시 Object 타입으로 생성함)
+			
 		// [2] DAO 에서 반환받은 결과 JSON 타입으로 형변환
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString(result);
+		String jsonResult = mapper.writeValueAsString(pageDto);	// 페이징 처리 결과를 담은 PageDto 반환
 		
 		// [3] RESPONSE
 		resp.setContentType("application/json");
