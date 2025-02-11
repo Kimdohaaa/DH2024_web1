@@ -59,12 +59,31 @@ public class BoardController extends HttpServlet{
 		// * 페이징 처리에 필요한 자료 
 			// 1. 한 페이지 당 출력할 게시물 개수 (매개변수로 사용자가 선택한 값 받기 or 지정하기)
 			int display = 5;	// 5 개로 지정
-			// 2. 페잊 당 조회할 게시물의 시작 번호
+			// 2. 페이지 당 조회할 게시물의 시작 번호
 			int startRow = (page-1) * display;
 			// 예시] 게시물 10 개 존재 : 0 ~ 9 번 게시물 존재
 			//		=> 1 페이지 : 0 ~ 4 번 게시물 출력 
 			// 		=> 2 페이지 : 5 ~ 9 번 게시물 출력
-		
+			// 3. 게시물의 전체 페이지 개수
+			int totalSize = BoardDao.getInstance().TotalSize(cno);
+			// 4. 전체  페이지 개수 계산 (총 페이지 개수 : 전체 게시물 수 / 페이지 당 게시물 수 => 나머지 존재 시 + 1)
+			int totalPage = 0;
+			if(totalSize % display == 0) { // 나머지가 없다면
+				totalPage = totalPage / display;
+			}else {	// 나머지가 있다면
+				totalPage = totalPage /display +1;	// 몫 + 1
+			}
+			// 5. 페이지 당 버튼 개수
+			int btnSize = 5;
+			// 6. 시작 버튼 번호 구하기 ((page - 1)/ 페이지 당 버튼 수) * 페이지 당 버튼 수 + 1
+			int startBtn = ((page - 1) / btnSize) * btnSize + 1;
+			// 7. 끝 버튼 번호 구하기 (시작버튼 + (페이지 당 버튼 수  - 1))
+			int endBtn = startBtn + (btnSize - 1);
+			// * 끝 번호가 전체 페이지 수 보다 커지면 안되므로 끝번호가 전체 페이지 수 보다 커질 경우 끝 번호를 전체 페이지 수로 지정
+			if(endBtn > totalPage) {
+				endBtn = totalPage;
+			}
+			
 		// [1] 전체 출력이기 때문에 배열 변수를 생성하여 DAO 에서 결과 받기 
 		ArrayList<BoardDto> result = BoardDao.getInstance().findAll(cno, startRow, display);
 		

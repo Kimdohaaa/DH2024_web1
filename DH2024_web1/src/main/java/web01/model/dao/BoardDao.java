@@ -207,4 +207,22 @@ public class BoardDao extends Dao{
 		
 		return rList;
 	}
+	
+	// [8] 특정 카테고리 게시물의 전체 페이지 개수 출력 (레코드 개수)
+	public int TotalSize(int cno) {
+		try {
+			String sql = "select count(*) from board where cno = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, cno);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt(1);	// 게시물의 레코드 전체 개수 반환
+			}
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+		return 0;
+	}
 }
