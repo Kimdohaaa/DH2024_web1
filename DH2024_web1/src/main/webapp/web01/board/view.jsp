@@ -26,6 +26,30 @@
 		
 		</div>
 		
+		<div style="text-align : center;" class="replybox">
+			<table style="text-align: center" border="1" class="reply table">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>내용</th>
+						<th>작성일</th>
+						<th>작성자</th>
+					</tr> 
+				</thead>
+				
+				<tbody class="reply">
+				
+				</tbody>
+			
+			</table>
+		</div>
+		
+		<div style="text-align: center">
+			<textarea class="replyin" style="width: 1000px; height: 100px"> </textarea>
+			<button class="btn btn-primary" type="button" onclick="onReply()">등록</button>
+		
+		</div>
+		
 	</div>
 	
 	<script src="/DH2024_web1/web01/js/board/view.js" type="text/javascript"></script>

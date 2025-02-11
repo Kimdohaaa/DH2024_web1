@@ -48,15 +48,15 @@ public class BoardDao extends Dao{
 		return false;
 	}
 	
-	// [2] 게시물 카테고리 별 전체 출력
-	public ArrayList<BoardDto> findAll(int cno) {
+	// [2] 게시물 카테고리 별 전체 출력 (+ 페이징 처리)
+	public ArrayList<BoardDto> findAll(int cno , int startRow, int display) { // 페이징 처리 지정 개수와 시작 게시물 번호를 매개변수로 받음
 		ArrayList<BoardDto> list = new ArrayList<BoardDto>();
 		try {
-			String sql = "select b.* , m.mid"
-					+ "	from board b join member m on b.mno = m.mno where b.cno = ? order by bno asc";
-			
+			String sql = "select * from board b inner join member m on b.mno = m.mno where b.cno = ? order by b.bno asc limit ? , ? ";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, cno);
+			ps.setInt(2, startRow);	// 시작 페이지
+			ps.setInt(3, display);	// 한 페이지 당 개수 지정
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -183,7 +183,8 @@ public class BoardDao extends Dao{
 	public ArrayList<ReplyDto> findReply(int bno) {
 		ArrayList<ReplyDto> rList = new ArrayList<ReplyDto>();
 		try {
-			String sql = "select m.mid , r.* from reply r join board b on b.bno = r.bno join member m on r.mno = m.mno where b.bno =?";
+			String sql = "select m.mid , r.* from reply r join board b on b.bno = r.bno join member m on r.mno = m.mno where b.bno =?"
+					+ " order by rno asc";
 		
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, bno);
