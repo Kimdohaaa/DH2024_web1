@@ -15,5 +15,5 @@ public class PageDto { // 페이징 처리된 데이터들의 이동 객체 (자
 	private int startbtn; 	// 버튼의 시작번호 저장 변수
 	private int endbtn; 	// 버튼의 끝 번호 저장 변수
 	private Object data; 	// 페이징된 자료 저장 변수
-	private int totalcount; // 전체 자료의 개수
+	private int totalcount; // 전체 자료의 개수 (모든 타입의 자료를 저장할 수 있도록 Object 타입 사용)
 }
