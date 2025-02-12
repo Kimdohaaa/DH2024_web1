@@ -1,4 +1,6 @@
 console.log('login.js open');
+
+
 // [1] 로그인 요청함수
 const onLogin = () => {
 	// 1. HTML INPUT DOM 가져오기
@@ -30,8 +32,9 @@ const onLogin = () => {
 		.then(res => res.json())
 		.then(data => {
 			if(data > 0){	// back 에서 전송받은 loginMno 가 존재할 시
-				alert('로그인 성공');
 				location.href = "../index.jsp";	// 성공 시 메인페이지로 이동
+				csocket.send(`${mid}님 접속`)
+
 			}else{
 				alert('로그인 실패');
 				location.href = "signup.jsp"; // 실패 시 회원가입 페이지로 이동
@@ -39,4 +42,5 @@ const onLogin = () => {
 		})
 		.catch(e => {console.log(e)})	// 예외처리
 }
+
 

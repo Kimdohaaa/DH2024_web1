@@ -17,7 +17,7 @@ const getMyInfo = () => {
 				document.querySelector(".mimg").src = `/DH2024_web1/upload/${data.mimg}`;								
 				
 			}
-			
+		
 		})
 		.catch(e => {console.log(e)})	// 예외처리
 }

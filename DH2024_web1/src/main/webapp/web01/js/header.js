@@ -1,11 +1,33 @@
 console.log('header.js open');
+
+// + 소켓 과제 //
+let csocket = new WebSocket('ws://localhost:8080/DH2024_web1/loginsocket') 
+
+	
+csocket.onmessage = ( (m) => {
+
+	console.log(m)
+	let alrambox = document.querySelector(".alrambox");
+
+	let shtml = `<div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+	  
+				<div class="toast-header">
+					  	<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+					  </div>
+					  <div class="toast-body">
+						  ${m.data}
+					  </div>
+				</div>
+				`
+	alrambox.innerHTML += shtml;
+})
+
 // [1] 로그인 정보 요청 함수
 const getLoginInfo = () => {
 	
 	// 로그인 상태에 따라 header 를 다르게 출력하기 위해
 	let loginMenu = document.querySelector('.loginmenu');
 	let html = ``;
-	
 	
 	fetch('/DH2024_web1/member/point', {method : `GET`})
 		.then(res => res.json())
@@ -19,6 +41,7 @@ const getLoginInfo = () => {
 					        <li class="nav-item">
 					          <a class="nav-link" href="/DH2024_web1/web01/member/signup.jsp">회원가입</a>
 					        </li>`	
+							
 				}else{
 					// 로그인 상태일 경우
 					html += `	<li class="nav-item">
